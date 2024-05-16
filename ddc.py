@@ -75,7 +75,7 @@ beta = 0.0005  # Beta value for KL divergence loss
 transfer_model = TransferNet(n_class, transfer_loss=transfer_loss, base_net='resnet50').cuda()
 optimizer = torch.optim.SGD([
     {'params': transfer_model.base_network.parameters()},
-    # {'params': transfer_model.bottleneck_layer.parameters(), 'lr': 10 * learning_rate},
+    {'params': transfer_model.bottleneck_layer.parameters(), 'lr': 10 * learning_rate},
     {'params': transfer_model.classifier_layer.parameters(), 'lr': 10 * learning_rate},
 ], lr=learning_rate, momentum=0.9, weight_decay=5e-4)
 lamb = 0.5 # Weight for transfer loss, it is a hyperparameter that needs to be tuned
@@ -99,18 +99,15 @@ def train(dataloaders, model, optimizer):
             data_target = data_target.cuda()
 
             optimizer.zero_grad()
-
-            label_source_pred, transfer_loss, mu_input, log_var_input = model(data_source, data_target, return_gaussian_params=True) # Domain loss
+            label_source_pred, transfer_loss, mu_input, log_var_input, mu_bottleneck, log_var_bottleneck = model(data_source, data_target, return_gaussian_params=True) # Domain loss
             clf_loss = criterion(label_source_pred, label_source) # Source classification loss
-
-            # KL Divergence calculation eiopajfI can adjust this for different layers.
-            kl_loss_input_to_layer = calculate_kl_divergence(mu_input, log_var_input, mu_input, log_var_input)
-            loss = clf_loss + lamb * transfer_loss + beta * kl_loss_input_to_layer # Total loss function
+            kl_loss_input_to_bottleneck = calculate_kl_divergence(mu_input, log_var_input, mu_bottleneck, log_var_bottleneck) # KL Divergence loss
+            loss = clf_loss + lamb * transfer_loss + beta * kl_loss_input_to_bottleneck # Total loss function
             loss.backward()
             optimizer.step()
             train_loss_clf = clf_loss.detach().item() + train_loss_clf
             train_loss_transfer = transfer_loss.detach().item() + train_loss_transfer
-            train_loss_kl = kl_loss_input_to_layer.detach().item() + train_loss_kl
+            train_loss_kl = kl_loss_input_to_bottleneck.detach().item() + train_loss_kl
             train_loss_total = loss.detach().item() + train_loss_total
         
         acc = test(model, target_test_loader)

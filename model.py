@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import torchvision.models as models
-from loss import MMD_loss, CORAL
+from loss import MMD_loss, CORAL  # Add this line to import the loss functions
 
 class TransferModel(nn.Module):
     def __init__(self, base_model: str = 'resnet50', pretrain: bool = True, n_class: int = 31):
@@ -62,19 +62,17 @@ class TransferNet(nn.Module):
         if base_net == 'resnet50':
             self.base_network = ResNet50Fc()
         else:
+            # Your own basenet
             return
         self.use_bottleneck = use_bottleneck
         self.transfer_loss = transfer_loss
-
-        # Comment out the bottleneck layer
-        # bottleneck_list = [nn.Linear(self.base_network.output_num(), bottleneck_width), nn.BatchNorm1d(bottleneck_width), nn.ReLU(), nn.Dropout(0.5)]
-        # self.bottleneck_layer = nn.Sequential(*bottleneck_list)
+        bottleneck_list = [nn.Linear(self.base_network.output_num(), bottleneck_width), nn.BatchNorm1d(bottleneck_width), nn.ReLU(), nn.Dropout(0.5)]
+        self.bottleneck_layer = nn.Sequential(*bottleneck_list)
         classifier_layer_list = [nn.Linear(self.base_network.output_num(), width), nn.ReLU(), nn.Dropout(0.5), nn.Linear(width, num_class)]
         self.classifier_layer = nn.Sequential(*classifier_layer_list)
 
-        # Comment out the bottleneck layer initialization
-        # self.bottleneck_layer[0].weight.data.normal_(0, 0.005)
-        # self.bottleneck_layer[0].bias.data.fill_(0.1)
+        self.bottleneck_layer[0].weight.data.normal_(0, 0.005)
+        self.bottleneck_layer[0].bias.data.fill_(0.1)
         for i in range(2):
             self.classifier_layer[i * 3].weight.data.normal_(0, 0.01)
             self.classifier_layer[i * 3].bias.data.fill_(0.0)
@@ -82,38 +80,32 @@ class TransferNet(nn.Module):
         # Gaussian parameters for KL divergence
         self.fc_mu_input = nn.Linear(self.base_network.output_num(), bottleneck_width)
         self.fc_log_var_input = nn.Linear(self.base_network.output_num(), bottleneck_width)
-        # Comment out the bottleneck Gaussian parameters
-        # self.fc_mu_bottleneck = nn.Linear(bottleneck_width, bottleneck_width)
-        # self.fc_log_var_bottleneck = nn.Linear(bottleneck_width, bottleneck_width)
+        self.fc_mu_bottleneck = nn.Linear(bottleneck_width, bottleneck_width)
+        self.fc_log_var_bottleneck = nn.Linear(bottleneck_width, bottleneck_width)
 
     def forward(self, source, target=None, return_fc_features=False, return_gaussian_params=False):
         source_features = self.base_network(source)
         if target is not None:
             target_features = self.base_network(target)
         
-        # Comment out the bottleneck layer usage
-        # if self.use_bottleneck:
-        #     source_bottleneck = self.bottleneck_layer(source_features)
-        #     if target is not None:
-        #         target_bottleneck = self.bottleneck_layer(target_features)
+        if self.use_bottleneck:
+            source_bottleneck = self.bottleneck_layer(source_features)
+            if target is not None:
+                target_bottleneck = self.bottleneck_layer(target_features)
         
-        transfer_loss = self.adapt_loss(source_features, target_features, self.transfer_loss) if target is not None else None
+        transfer_loss = self.adapt_loss(source_bottleneck, target_bottleneck, self.transfer_loss) if target is not None else None
 
         source_clf = self.classifier_layer(source_features)
 
         mu_input = self.fc_mu_input(source_features)
         log_var_input = self.fc_log_var_input(source_features)
-
-        # Comment out the bottleneck Gaussian parameters usage
-        # mu_bottleneck = self.fc_mu_bottleneck(source_bottleneck)
-        # log_var_bottleneck = self.fc_log_var_bottleneck(source_bottleneck)
+        mu_bottleneck = self.fc_mu_bottleneck(source_bottleneck)
+        log_var_bottleneck = self.fc_log_var_bottleneck(source_bottleneck)
 
         if return_fc_features:
-            return (source_features, source_clf, target_features)
+            return (source_features, source_bottleneck, source_clf, target_bottleneck)
         if return_gaussian_params:
-            # Comment out the bottleneck Gaussian parameters return
-            # return (source_clf, transfer_loss, mu_input, log_var_input, mu_bottleneck, log_var_bottleneck)
-            return (source_clf, transfer_loss, mu_input, log_var_input)
+            return (source_clf, transfer_loss, mu_input, log_var_input, mu_bottleneck, log_var_bottleneck)
         return source_clf, transfer_loss
 
     def adapt_loss(self, X, Y, adapt_loss):
@@ -137,7 +129,7 @@ class TransferNet(nn.Module):
             loss = 0
         return loss
 
-    def predict(self, x):
+    def predict(self, x):  # Add this method to match the TransferModel class
         features = self.base_network(x)
         clf = self.classifier_layer(features)
         return clf
