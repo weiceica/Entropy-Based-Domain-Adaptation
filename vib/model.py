@@ -73,6 +73,7 @@ class TransferNet(nn.Module):
 
         self.fc_mu = nn.Linear(bottleneck_width, bottleneck_width)
         self.fc_log_var = nn.Linear(bottleneck_width, bottleneck_width)
+        self.classifier = nn.Linear(bottleneck_width, num_class)
 
     def forward(self, source, target=None, return_gaussian_params=False):
         source_features = self.base_network(source)
@@ -88,11 +89,12 @@ class TransferNet(nn.Module):
 
         mu = self.fc_mu(source_bottleneck)
         log_var = self.fc_log_var(source_bottleneck)
+        classifier_output = self.classifier(source_bottleneck)
 
         if return_gaussian_params:
-            return source_bottleneck, transfer_loss, mu, log_var
+            return classifier_output, transfer_loss, mu, log_var
 
-        return source_bottleneck, transfer_loss
+        return classifier_output, transfer_loss
 
     def adapt_loss(self, X, Y, adapt_loss):
         if adapt_loss == 'mmd':
@@ -107,4 +109,5 @@ class TransferNet(nn.Module):
     def predict(self, x):
         features = self.base_network(x)
         bottleneck = self.bottleneck_layer(features)
-        return bottleneck
+        classifier_output = self.classifier(bottleneck)
+        return classifier_output

@@ -1,13 +1,13 @@
-Epoch: [ 0/100], cls_loss: 3.4125, transfer_loss: 0.1643, kl_loss: 3518.3876, total_Loss: 5.2539, acc: 0.0749
-Epoch: [ 1/100], cls_loss: 3.3499, transfer_loss: 0.1648, kl_loss: 3256.0575, total_Loss: 5.0603, acc: 0.0902
-Epoch: [ 2/100], cls_loss: 3.2846, transfer_loss: 0.1659, kl_loss: 3030.7365, total_Loss: 4.8830, acc: 0.0788
-Epoch: [ 3/100], cls_loss: 3.2141, transfer_loss: 0.1704, kl_loss: 2841.4884, total_Loss: 4.7201, acc: 0.1345
-Epoch: [ 4/100], cls_loss: 3.1350, transfer_loss: 0.1740, kl_loss: 2714.5148, total_Loss: 4.5793, acc: 0.2055
-Epoch: [ 5/100], cls_loss: 3.0509, transfer_loss: 0.1824, kl_loss: 2589.3355, total_Loss: 4.4368, acc: 0.2485
-Epoch: [ 6/100], cls_loss: 2.9400, transfer_loss: 0.1860, kl_loss: 2500.9335, total_Loss: 4.2835, acc: 0.2964
-Epoch: [ 7/100], cls_loss: 2.8175, transfer_loss: 0.1936, kl_loss: 2423.8843, total_Loss: 4.1262, acc: 0.3639
-Epoch: [ 8/100], cls_loss: 2.6697, transfer_loss: 0.1977, kl_loss: 2353.4594, total_Loss: 3.9453, acc: 0.3781
-Epoch: [ 9/100], cls_loss: 2.4919, transfer_loss: 0.2054, kl_loss: 2255.2817, total_Loss: 3.7222, acc: 0.4267
+Epoch: [00/100], cls_loss: 3.4125, transfer_loss: 0.1643, kl_loss: 3518.3876, total_Loss: 5.2539, acc: 0.0749
+Epoch: [01/100], cls_loss: 3.3499, transfer_loss: 0.1648, kl_loss: 3256.0575, total_Loss: 5.0603, acc: 0.0902
+Epoch: [02/100], cls_loss: 3.2846, transfer_loss: 0.1659, kl_loss: 3030.7365, total_Loss: 4.8830, acc: 0.0788
+Epoch: [03/100], cls_loss: 3.2141, transfer_loss: 0.1704, kl_loss: 2841.4884, total_Loss: 4.7201, acc: 0.1345
+Epoch: [04/100], cls_loss: 3.1350, transfer_loss: 0.1740, kl_loss: 2714.5148, total_Loss: 4.5793, acc: 0.2055
+Epoch: [05/100], cls_loss: 3.0509, transfer_loss: 0.1824, kl_loss: 2589.3355, total_Loss: 4.4368, acc: 0.2485
+Epoch: [06/100], cls_loss: 2.9400, transfer_loss: 0.1860, kl_loss: 2500.9335, total_Loss: 4.2835, acc: 0.2964
+Epoch: [07/100], cls_loss: 2.8175, transfer_loss: 0.1936, kl_loss: 2423.8843, total_Loss: 4.1262, acc: 0.3639
+Epoch: [08/100], cls_loss: 2.6697, transfer_loss: 0.1977, kl_loss: 2353.4594, total_Loss: 3.9453, acc: 0.3781
+Epoch: [09/100], cls_loss: 2.4919, transfer_loss: 0.2054, kl_loss: 2255.2817, total_Loss: 3.7222, acc: 0.4267
 Epoch: [10/100], cls_loss: 2.3298, transfer_loss: 0.2082, kl_loss: 2208.6344, total_Loss: 3.5383, acc: 0.4388
 Epoch: [11/100], cls_loss: 2.1589, transfer_loss: 0.2098, kl_loss: 2187.6442, total_Loss: 3.3577, acc: 0.4469
 Epoch: [12/100], cls_loss: 2.0082, transfer_loss: 0.2139, kl_loss: 2122.4159, total_Loss: 3.1763, acc: 0.4757

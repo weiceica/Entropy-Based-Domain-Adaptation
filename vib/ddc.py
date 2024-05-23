@@ -14,7 +14,7 @@ torch.cuda.set_device(1)
 data_folder = os.path.abspath(os.path.join(os.getcwd(), '..', 'dataset'))
 batch_size = 32
 n_class = 31
-domain_src, domain_tar = 'webcam', 'amazon'
+domain_src, domain_tar = 'dslr', 'amazon'
 
 # Data loader
 def load_data(root_path, domain, batch_size, phase):

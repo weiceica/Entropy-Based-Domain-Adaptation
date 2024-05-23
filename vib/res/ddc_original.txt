@@ -1,13 +1,13 @@
-Epoch: [ 0/100], cls_loss: 3.4199, transfer_loss: 0.1613, total_Loss: 3.5005, acc: 0.0557
-Epoch: [ 1/100], cls_loss: 3.3556, transfer_loss: 0.1632, total_Loss: 3.4372, acc: 0.0703
-Epoch: [ 2/100], cls_loss: 3.2891, transfer_loss: 0.1632, total_Loss: 3.3708, acc: 0.0934
-Epoch: [ 3/100], cls_loss: 3.2199, transfer_loss: 0.1618, total_Loss: 3.3008, acc: 0.1175
-Epoch: [ 4/100], cls_loss: 3.1366, transfer_loss: 0.1630, total_Loss: 3.2181, acc: 0.1491
-Epoch: [ 5/100], cls_loss: 3.0543, transfer_loss: 0.1643, total_Loss: 3.1365, acc: 0.1899
-Epoch: [ 6/100], cls_loss: 2.9522, transfer_loss: 0.1641, total_Loss: 3.0342, acc: 0.2815
-Epoch: [ 7/100], cls_loss: 2.8382, transfer_loss: 0.1631, total_Loss: 2.9198, acc: 0.3383
-Epoch: [ 8/100], cls_loss: 2.7054, transfer_loss: 0.1616, total_Loss: 2.7861, acc: 0.3823
-Epoch: [ 9/100], cls_loss: 2.5430, transfer_loss: 0.1631, total_Loss: 2.6245, acc: 0.3958
+Epoch: [00/100], cls_loss: 3.4199, transfer_loss: 0.1613, total_Loss: 3.5005, acc: 0.0557
+Epoch: [01/100], cls_loss: 3.3556, transfer_loss: 0.1632, total_Loss: 3.4372, acc: 0.0703
+Epoch: [02/100], cls_loss: 3.2891, transfer_loss: 0.1632, total_Loss: 3.3708, acc: 0.0934
+Epoch: [03/100], cls_loss: 3.2199, transfer_loss: 0.1618, total_Loss: 3.3008, acc: 0.1175
+Epoch: [04/100], cls_loss: 3.1366, transfer_loss: 0.1630, total_Loss: 3.2181, acc: 0.1491
+Epoch: [05/100], cls_loss: 3.0543, transfer_loss: 0.1643, total_Loss: 3.1365, acc: 0.1899
+Epoch: [06/100], cls_loss: 2.9522, transfer_loss: 0.1641, total_Loss: 3.0342, acc: 0.2815
+Epoch: [07/100], cls_loss: 2.8382, transfer_loss: 0.1631, total_Loss: 2.9198, acc: 0.3383
+Epoch: [08/100], cls_loss: 2.7054, transfer_loss: 0.1616, total_Loss: 2.7861, acc: 0.3823
+Epoch: [09/100], cls_loss: 2.5430, transfer_loss: 0.1631, total_Loss: 2.6245, acc: 0.3958
 Epoch: [10/100], cls_loss: 2.3637, transfer_loss: 0.1625, total_Loss: 2.4450, acc: 0.4129
 Epoch: [11/100], cls_loss: 2.2071, transfer_loss: 0.1624, total_Loss: 2.2883, acc: 0.4317
 Epoch: [12/100], cls_loss: 2.0038, transfer_loss: 0.1620, total_Loss: 2.0848, acc: 0.4604

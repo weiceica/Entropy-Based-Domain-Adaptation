@@ -51,7 +51,7 @@ def parse_and_plot(filepaths, labels, output_filepath):
     plt.tight_layout(rect=[0, 0, 0.8, 1])
     plt.savefig(output_filepath, format='png')
     plt.close()
-input_filepaths = ['res/ddc_vib.txt', 'res/ddc_vib_bottleneck.txt', 'res/ddc_original.txt']
-labels = ['DDC VIB bottleneck + classfier', 'DDC VIB bottleneck', 'DDC Original']
-output_filepath = 'ddc_plot.png'
+input_filepaths = ['res/ddc_kl_bottleneck.txt', 'res/test1.txt', 'res/ddc_original.txt']
+labels = ['clf + ddc + kl', 'vib + ddc', 'original']
+output_filepath = 'webcam_to_amazonMay21.png'
 parse_and_plot(input_filepaths, labels, output_filepath)
