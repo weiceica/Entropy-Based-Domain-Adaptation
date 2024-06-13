@@ -14,7 +14,7 @@ torch.cuda.set_device(1)
 data_folder = os.path.abspath(os.path.join(os.getcwd(), '..', 'dataset'))
 batch_size = 32
 n_class = 31
-domain_src, domain_tar = 'dslr', 'amazon'
+domain_src, domain_tar = 'webcam', 'amazon'
 
 # Data loader
 def load_data(root_path, domain, batch_size, phase):
@@ -67,7 +67,7 @@ beta = 0.0005  # Beta value for VIB loss
 optimizer = torch.optim.SGD([
     {'params': transfer_model.base_network.parameters()},
     {'params': transfer_model.bottleneck_layer.parameters(), 'lr': 10 * learning_rate}
-], lr=learning_rate, momentum=0.9, weight_decay=5e-4)
+], lr=learning_rate, momentum=0.91, weight_decay=5e-4)
 lamb = 0.5 # Weight for transfer loss, it is a hyperparameter that needs to be tuned
 
 # Training function

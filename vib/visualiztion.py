@@ -51,7 +51,7 @@ def parse_and_plot(filepaths, labels, output_filepath):
     plt.tight_layout(rect=[0, 0, 0.8, 1])
     plt.savefig(output_filepath, format='png')
     plt.close()
-input_filepaths = ['res/test1.txt', 'res/ddc_kl_bottleneck.txt', 'res/ddc_original.txt']
-labels = ['viib', 'vib + ddc', 'original']
-output_filepath = 'webcam_to_amazonMay21.png'
+input_filepaths = ['rres/WtoA-v.txt', 'rrres/WtoA-o.txt']
+labels = ['vib + ddc', 'original']
+output_filepath = 'WtoA.png'
 parse_and_plot(input_filepaths, labels, output_filepath)
